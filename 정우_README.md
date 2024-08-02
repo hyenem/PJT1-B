@@ -1,5 +1,5 @@
 # 클래스 다이어그램
-
+```
 VideoReviewDao <<interface>>
 패키지: com.ssafy.fit.model.dao
 ~ insertReview(videoReview: VideoReview) : int
@@ -96,4 +96,4 @@ VideoDaoImpl
 + selectVideo(): List <Video>
 + selectVideoByNo(no: int): Video
 설명: VideoDao 인터페이스를 구현한 클래스입니다. Video 데이터를 리스트로 관리합니다.
-
+```
