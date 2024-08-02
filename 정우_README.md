@@ -1,15 +1,3 @@
-* + : public
-* - : private
-* # : protected
-* ~ : default
-  
-* Class 
-* 추상클래스명 {abstract}
-* 인터페이스명 <<interface>>
-
-* static => {readonly}
------
-
 # 클래스 다이어그램
 
 VideoReviewDao <<interface>>
