@@ -22,7 +22,7 @@ public class VideoUi {
 	
 	SsafitUtil util = new SsafitUtil();
 	MainUi main = new MainUi();
-	VideoReviewUi vreview = VideoReviewUi.getInstance(0);
+	VideoReviewUi vreview = VideoReviewUi.getInstance();
 	VideoReviewDaoImpl vrimpl = VideoReviewDaoImpl.getInstance();
 	List<Video> videos = videoDao.selectVideo();
 	
@@ -54,36 +54,37 @@ public class VideoUi {
 	}
 	
 
-	public void detailVideo(int num) { // 입력받은 숫자에 따라 영상 상세로 이동
-		Video video = videoDao.selectVideoByNo(num);
-		if (video != null) {
-			util.printLine('-', 30);
-			System.out.println("번호 : " + video.getNo());
-			System.out.println("제목 : " + video.getTitle());
-			System.out.println("운동 : " + video.getPart());
-			System.out.println("영상 URL : " + video.getUrl());
-			util.printLine('-', 30);
-			util.printLine('-', 30);
-			List<VideoReview> review = vrimpl.selectReview(num); //리뷰리스트 가져오기
-			System.out.println("영상리뷰 : " + review.size());
-			util.printLine('-', 30);
-			for(VideoReview v : review) {
-				System.out.println(v.getReviewNo() + "  " + v.getNickName() + "  " + v.getContent());
-			} 
-			util.printLine('-', 30);
-			System.out.println("1. 리뷰등록");
-			System.out.println("0. 이전으로");
-			util.printLine('-', 30);
-			int selection = util.inputInt("실행할 메뉴를 선택해주세요. : ");
-			if(selection == 1) {
-				vreview.service();
-			} else if (selection == 0) {
-				service();
-			}
-		} else {
-			System.out.println("해당 번호의 영상이 없습니다.");
-			return;
-		}
-	}
-	
+    public void detailVideo(int num) { // 입력받은 숫자에 따라 영상 상세로 이동
+        Video video = videoDao.selectVideoByNo(num);
+        if (video != null) {
+            util.printLine('-', 30);
+            System.out.println("번호 : " + video.getNo());
+            System.out.println("제목 : " + video.getTitle());
+            System.out.println("운동 : " + video.getPart());
+            System.out.println("영상 URL : " + video.getUrl());
+            util.printLine('-', 30);
+            util.printLine('-', 30);
+            List<VideoReview> review = vrimpl.selectReview(num); //리뷰리스트 가져오기
+            System.out.println("영상리뷰 : " + review.size());
+            util.printLine('-', 30);
+            for (VideoReview v : review) {
+                System.out.println(v.getReviewNo() + "  " + v.getNickName() + "  " + v.getContent());
+            }
+            util.printLine('-', 30);
+            System.out.println("1. 리뷰등록");
+            System.out.println("0. 이전으로");
+            util.printLine('-', 30);
+            int selection = util.inputInt("실행할 메뉴를 선택해주세요. : ");
+            if (selection == 1) {
+        		VideoReviewUi reviewUi = VideoReviewUi.getInstance();
+        		reviewUi.service(num);
+            } else if (selection == 0) {
+                service();
+            }
+        } else {
+            System.out.println("해당 번호의 영상이 없습니다.");
+            return;
+        }
+    }
+}
 }
