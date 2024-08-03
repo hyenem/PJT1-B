@@ -6,12 +6,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.ssafy.fit.model.User;
 
-public class UserManagerImpl implements IUserManager {
+public class UserManagerImpl implements IUserManager, Serializable {
+	private static final long serialVersionUID = 1L;
 	//싱글톤으로 구성
 	private List<User> userList = new ArrayList<User>();
 	private static UserManagerImpl instance = new UserManagerImpl();
@@ -74,11 +76,12 @@ public class UserManagerImpl implements IUserManager {
 	@Override
 	public void loadUserData() {
 		File file = new File("user.dat");
-		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))){
-			Object o = ois.readObject();
-			this.userList = (ArrayList<User>)o;
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
+		if(file != null) {
+			try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))){
+				Object o = ois.readObject();
+				this.userList = (ArrayList<User>)o;
+			} catch (IOException | ClassNotFoundException e) {
+			}
 		}
 		
 	}
