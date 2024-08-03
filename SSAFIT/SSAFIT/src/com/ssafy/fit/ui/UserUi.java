@@ -18,31 +18,36 @@ public class UserUi {
 	}
 	
 	public void service() {
-		if(loginUser == null) {
-			System.out.println("------------------------------------------------");
-			System.out.println("1. 로그인");
-			System.out.println("2. 회원가입");
-			System.out.println("--------------원하는 보기를 입력해주세요.--------------");
-			int selection = util.inputInt("");
-			if(selection == 1) {
-				logIn();
-			} else if(selection ==2) {
-				join();
+		while(true) {
+			if(loginUser == null) {
+				System.out.println("------------------------------------------------");
+				System.out.println("1. 로그인");
+				System.out.println("2. 회원가입");
+				System.out.println("3. 이전 화면으로 돌아가기");
+				System.out.println("--------------원하는 보기를 입력해주세요.--------------");
+				int selection = util.inputInt("");
+				if(selection == 1) {
+					logIn();
+					if(loginUser!=null) break;
+				} else if(selection ==2) {
+					join();
+				} else if(selection ==3) {
+					break;
+				} else {
+					System.out.println("1, 2, 3 중 하나를 선택해주세요.");
+				}
 			} else {
-				System.out.println("1과 2 중 하나를 선택해주세요.");
-			}
-		} else {
-			System.out.println("------------------------------------------------");
-			System.out.println("1. 내정보조회");
-			System.out.println("2. 로그아웃");
-			System.out.println("--------------원하는 보기를 입력해주세요.--------------");
-			int selection = util.inputInt(null);
-			if(selection == 1) {
-				System.out.println(loginUser.toString());
-			} else if(selection ==2) {
-				loginUser = null;
-			} else {
-				System.out.println("1과 2 중 하나를 선택해주세요.");
+				System.out.println("------------------------------------------------");
+				System.out.println("1. 내정보조회");
+				System.out.println("2. 로그아웃");
+				System.out.println("--------------원하는 보기를 입력해주세요.--------------");
+				int selection = util.inputInt("");
+				if(selection == 1) {
+					System.out.println(loginUser.toString());
+				} else if(selection ==2) {
+					loginUser = null;
+				}
+				
 			}
 		}
 	}
@@ -50,6 +55,7 @@ public class UserUi {
 	private void logIn() {
 		System.out.println("id 와 password를 입력해주세요");
 		String id = util.input("id :");
+		util.printLine();
 		String password = util.input("password :");
 		if(UserDao.searchId(id)!=null) {
 			if(UserDao.matching(id, password)){
@@ -68,7 +74,7 @@ public class UserUi {
 		String id;
 		System.out.println("id를 입력해주세요");
 		while(true) {
-			id = util.input(null);
+			id = util.input("");
 			if(UserDao.searchId(id)==null) {
 				break;
 			} else {
