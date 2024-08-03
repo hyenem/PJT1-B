@@ -1,10 +1,11 @@
 package com.ssafy.fit.model;
 
 public class VideoReview {
-	static int videoNo;
-	static int reviewNo;
-	static String nickName;
-	static String content;
+	private static int videoNo;
+	private static int reviewNo;
+	private static String nickName;
+	private static String content;
+	
 	
 	public static int getVideoNo() {
 		return videoNo;
