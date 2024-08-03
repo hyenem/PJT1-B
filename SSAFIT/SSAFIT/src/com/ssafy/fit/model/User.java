@@ -1,6 +1,8 @@
 package com.ssafy.fit.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 	private String name;
 	private String id;
 	private String password;
