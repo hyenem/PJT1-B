@@ -1,4 +1,4 @@
-package com.ssafy.fit.model.dao;
+package com.ssafy.fit.model;
 
 import java.util.*;
 

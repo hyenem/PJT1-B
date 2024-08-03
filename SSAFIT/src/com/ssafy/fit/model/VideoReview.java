@@ -1,41 +1,44 @@
 package com.ssafy.fit.model;
 
 public class VideoReview {
-	private static int videoNo;
-	private static int reviewNo;
-	private static String nickName;
-	private static String content;
+	private int videoNo;
+	private int reviewNo;
+	private String nickName;
+	private String content;
 	
-	
-	public static int getVideoNo() {
+	public int getVideoNo() {
 		return videoNo;
 	}
-	
-	public static void setVideoNo(int videoNo) {
-		VideoReview.videoNo = videoNo;
+	public void setVideoNo(int videoNo) {
+		this.videoNo = videoNo;
 	}
-	
-	public static int getReviewNo() {
+	public int getReviewNo() {
 		return reviewNo;
 	}
-	
-	public static void setReviewNo(int reviewNo) {
-		VideoReview.reviewNo = reviewNo;
+	public void setReviewNo(int reviewNo) {
+		this.reviewNo = reviewNo;
 	}
-	
-	public static String getNickName() {
+	public String getNickName() {
 		return nickName;
 	}
-	
-	public static void setNickName(String nickName) {
-		VideoReview.nickName = nickName;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
-	public static String getContent() {
+	public String getContent() {
 		return content;
 	}
-	public static void setContent(String content) {
-		VideoReview.content = content;
+	public void setContent(String content) {
+		this.content = content;
 	}
+	
+	@Override
+	public String toString() {
+		return "VideoReview [videoNo=" + videoNo + ", reviewNo=" + reviewNo + ", nickName=" + nickName + ", content="
+				+ content + "]";
+	}
+	
+	
+
 	
 	
 }
