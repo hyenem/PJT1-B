@@ -9,7 +9,6 @@ import com.ssafy.fit.util.SsafitUtil;
 public class VideoReviewUi {
     private VideoReviewDao videoReviewDao;
     private static VideoReviewUi instance;
-    private int videoNo;
 
     private SsafitUtil util = new SsafitUtil();
 
@@ -17,15 +16,14 @@ public class VideoReviewUi {
         videoReviewDao = VideoReviewDaoImpl.getInstance();
     }
 
-    public static VideoReviewUi getInstance(int videoNo) {
+    public static VideoReviewUi getInstance() {
         if (instance == null) {
             instance = new VideoReviewUi();
         }
-        instance.videoNo = videoNo;
         return instance;
     }
 
-    public void service() {
+    public void service(int videoNo) {
         while (true) {
             System.out.println("-----------------리뷰 메뉴----------------");
             System.out.println("1. 리뷰 보기");
@@ -35,10 +33,10 @@ public class VideoReviewUi {
             int menu = util.inputInt("메뉴를 선택하세요: ");
             switch (menu) {
                 case 1:
-                    listReview();
+                    listReview(videoNo);
                     return;
                 case 2:
-                    registReview();
+                    registReview(videoNo);
                     return;
                 case 3:
                     System.out.println("프로그램을 종료합니다.");
@@ -49,7 +47,7 @@ public class VideoReviewUi {
         }
     }
 
-    private void listReview() {
+    private void listReview(int videoNo) {
         if (videoReviewDao.selectReview(videoNo).isEmpty()) {
             System.out.println("등록된 리뷰가 없습니다.\n---------------------------------------");
         } else {
@@ -66,8 +64,7 @@ public class VideoReviewUi {
             int choice = util.inputInt("메뉴를 선택하세요: ");
             switch (choice) {
                 case 1:
-                    // 뒤로 가기
-                    service();
+                    service(videoNo);
                     break;
                 case 2:
                     System.out.println("프로그램을 종료합니다.");
@@ -79,7 +76,7 @@ public class VideoReviewUi {
         }
     }
 
-    private void registReview() {
+    private void registReview(int videoNo) {
         String reviewContent = util.input("리뷰를 입력하세요: ");
         String nickName = util.input("닉네임을 입력하세요: ");
         VideoReview review = new VideoReview();
@@ -99,8 +96,7 @@ public class VideoReviewUi {
             int choice = util.inputInt("메뉴를 선택하세요: ");
             switch (choice) {
                 case 1:
-                    // 뒤로 가기
-                    service();
+                    service(videoNo);
                     break;
                 case 2:
                     UserManagerImpl instance = UserManagerImpl.getInstance();

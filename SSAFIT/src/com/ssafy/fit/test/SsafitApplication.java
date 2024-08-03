@@ -13,9 +13,9 @@ public class SsafitApplication {
 //		
 //		MainUi main = new MainUi();
 //		main.service();
-		VideoReviewUi reviewUi = VideoReviewUi.getInstance(0);
+		VideoReviewUi reviewUi = VideoReviewUi.getInstance();
 		
-		reviewUi.service();
+		reviewUi.service(1);
 
 	}
 
