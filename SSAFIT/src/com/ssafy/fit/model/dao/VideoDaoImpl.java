@@ -15,13 +15,16 @@ public class VideoDaoImpl implements VideoDao{
 	private static VideoDaoImpl instance;
 	private VideoDaoImpl() {}
 	
+	// Singleton 인스턴스를 반환하는 메소드
 	public static VideoDaoImpl getInstance() {
 		if (instance == null) {
 			instance = new VideoDaoImpl();
 		}
 		return instance;
 	}
-
+	
+	
+	// 비디오 목록 반환
 	@Override
 	public List<Video> selectVideo() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("data/video.json")));
@@ -33,24 +36,22 @@ public class VideoDaoImpl implements VideoDao{
 		// 해당 while문을 빠져나오면 sb에는 모든 문자열이 저장되어있음
 		Gson gson = new Gson();
 		
-		Video[] listarr = gson.fromJson(sb.toString(), Video[].class); // gson으로 json 파일 변환해서 받은 문자 Video 배열에 삽입
+		Video[] listArr = gson.fromJson(sb.toString(), Video[].class); // gson으로 json 파일 변환해서 받은 문자 Video 배열에 삽입
 		
-		for (Video video : listarr) {
+		for (Video video : listArr) {
 			list.add(video); // Video 배열 내용 list에 추가
 		}
 		
 		return list;
 	}
 	
+	// 비디오 번호로 비디오 선택해서 반환
 	@Override
 	public Video selectVideoByNo(int no) {
-		try {
 			for (Video video : list) // 검색 할 Video List 가져오기
-				if (video.getNo() == no) // 리스트 내의 no와 검색 대상 no가 동일하면 해당 video 반환
+				if (video.getNo() == no) {// 리스트 내의 no와 검색 대상 no가 동일하면 해당 video 반환
 					return video;
-		} catch (Exception e) {
-			e.printStackTrace(); // 없을 시 에러 출력 -> but 보안에 취약 | 실제 서비스 구현시에는 사용 지양하기
-		}
+				}
 		return null;
 	}
 
