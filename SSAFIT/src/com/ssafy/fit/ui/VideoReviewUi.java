@@ -39,6 +39,8 @@ public class VideoReviewUi {
                     registReview(videoNo);
                     return;
                 case 3:
+                	UserManagerImpl usermanager = UserManagerImpl.getInstance();
+                	usermanager.saveUserData();
                     System.out.println("프로그램을 종료합니다.");
                     return;
                 default:
@@ -68,6 +70,8 @@ public class VideoReviewUi {
                     break;
                 case 2:
                     System.out.println("프로그램을 종료합니다.");
+                    UserManagerImpl usermanager = UserManagerImpl.getInstance();
+                    usermanager.saveUserData();
                     System.exit(0);
                     break;
                 default:
@@ -99,9 +103,9 @@ public class VideoReviewUi {
                     service(videoNo);
                     break;
                 case 2:
-                    UserManagerImpl instance = UserManagerImpl.getInstance();
-                    instance.saveUserData();
                     System.out.println("프로그램을 종료합니다.");
+                    UserManagerImpl usermanager = UserManagerImpl.getInstance();
+                    usermanager.saveUserData();
                     System.exit(0);
                     break;
                 default:
